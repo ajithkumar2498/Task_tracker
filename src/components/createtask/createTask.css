@@ -1,0 +1,26 @@
+.task-form{
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    max-width: 25rem;
+    gap:1.5rem;
+    margin-top: 3rem;
+    transition: 0.3s ease;
+}
+.task-form > input{
+    height: 3rem;
+    padding-left: 0.4rem;
+    background: transparent;
+    border-radius: 8px;
+    border-color: rgb(218, 217, 216);
+}
+.task-form > button{
+    border: none;
+    background: transparent;
+    background-color: rgba(4, 22, 140, 0.919);
+    height: 3rem;
+    color: white;
+    font-size: larger;
+    font-weight: 600;
+    border-radius: 8px;
+}
