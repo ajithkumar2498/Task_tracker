@@ -95,7 +95,7 @@ const Header = ({text, bg, count,})=>{
     return  <>
     <div className={` ${bg} status-header`}>
    {text}<div className='task-counter'>{count} </div>
- <i className="fa-solid fa-plus create-task-icon" onClick={()=>{nav('/create-task')}} ></i> 
+      <i className="fa-solid fa-plus create-task-icon" onClick={()=>{nav('/create-task')}} ></i> 
    </div>
   </>
   }
@@ -130,7 +130,9 @@ const Task = ({task, tasks, setTasks})=>{
   <div ref={drag} className={`task-box ${isDragging ? "low": "high"}`}>
    <p>{task.name}</p>
    <p>{task.description}</p>
-   <i className="fa-solid fa-xmark delete-task-btn" onClick={()=>{handleRemove(task.id)}}></i>
+   <p className='priority'>{task.priority}</p>
+   <p >{task.deadline}</p>
+   <i className="fa-solid fa-trash delete-task-btn" onClick={()=>{handleRemove(task.id)}}></i>
    </div>
   </>
 }

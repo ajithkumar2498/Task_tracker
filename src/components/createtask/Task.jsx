@@ -10,8 +10,9 @@ function task({tasks, setTasks}) {
     id:"",
     name:"",
     description:"",
-    status:"todo"
-
+    priority:"",
+    status:"todo",
+    deadline:""
   })
   console.log(task)
   const handleSubmit =(e)=>{
@@ -31,7 +32,15 @@ function task({tasks, setTasks}) {
     })
     nav('/list-task')
   }
+  //date format change function
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+    return formattedDate;
+  };
+
   return <> 
+  <div className="form">
   <form onSubmit={handleSubmit} className='task-form '>
     <input type="text" placeholder="Task" value={task.name} onChange={(e)=>{
       setTask({
@@ -41,16 +50,48 @@ function task({tasks, setTasks}) {
       })
     }}/>
     
-    <input type="text" placeholder="description" value={task.description} onChange={(e)=>{
+    <input type="textarea" placeholder="description" value={task.description} onChange={(e)=>{
       setTask({
         ...task,
         id:uuidv4(),
         description:e.target.value
       })
     }}/>
-  
+    <div className="control">
+      <label htmlFor="priority">priority</label>
+        <select name="priority" id="" value={task.priority} onChange={(e)=>{
+            setTask({
+              ...task,
+              id:uuidv4,
+              priority:e.target.value
+            })
+        }}>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+        <label htmlFor="Assignuser">Assign User</label>
+        <select name="users" id="" value={task.user} onChange={(e)=>{
+            setTask({
+              ...task,
+              id:uuidv4,
+              priority:e.target.value
+            })
+        }}>
+           <option value="Low">select user</option>
+        </select>
+    </div>
+    <label htmlFor="deadline">deadline</label>
+    <input type="date" name="deadline" value={task.deadline} onChange={(e)=>{
+      setTask({
+        ...task,
+        id:uuidv4,
+        deadline:formatDate(e.target.value)
+      })
+    }} min={new Date().toISOString().split("T")[0]} />
     <button>Create</button>
   </form>
+  </div>
    
   </>
     
