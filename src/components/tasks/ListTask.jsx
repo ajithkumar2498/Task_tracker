@@ -22,9 +22,6 @@ function ListTask({tasks, setTasks}) {
     setInprogress(fInprogress)
     setClosed(fClosed)
     setFrozen(fFrozen)
-
-   
-   
   }, [tasks])
 
   const statuses = ["todo", "inprogress","closed","frozen"]

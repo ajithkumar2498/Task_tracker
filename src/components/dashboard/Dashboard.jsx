@@ -1,6 +1,12 @@
 import React from 'react'
-
+import { useState } from 'react'
 function Dashboard() {
+
+    const [first, setfirst] = useState({
+        name:"",
+        email:"",
+        localId:"",
+    })
   return <> 
      {/* <div id="content-wrapper" class="d-flex flex-column"> */}
       {/* <!-- Main Content --> */}

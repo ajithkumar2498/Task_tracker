@@ -11,6 +11,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import RegisterPage from './components/pages/RegisterPage'
+import LandingPage from './landingpage/LandingPage'
+import LoginPage from './components/pages/LoginPage'
 
 function App() {
   const [tasks,setTasks]=useState([])
@@ -21,10 +23,11 @@ function App() {
  }, [])
  
   return  <>
-   
+    
      <DndProvider backend={HTML5Backend}>
       <Toaster/>
          <BrowserRouter>
+         <LandingPage/>
        <div className="wrapper  ">
            <Sidebar/>
 
@@ -34,6 +37,7 @@ function App() {
                <div className="container-fluid">
                  <Routes>
                   <Route path='/register-page' element={<RegisterPage/>}/>
+                  <Route path='/login-page' element={<LoginPage/>}/>
                  <Route path='/dashboard' element={<Dashboard/>}/>
                  <Route path='/clients' element={<Clients/>}/>
                     <Route path='/All-task' element={<AllTask tasks={tasks} setTasks={setTasks}/>}> 
