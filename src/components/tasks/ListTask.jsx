@@ -4,10 +4,14 @@ import toast from 'react-hot-toast'
 import { useDrag, useDrop } from 'react-dnd'
 import task from '../createtask/Task.jsx'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import { isAuthenticated } from '../services/Auth'
 
 function ListTask({tasks, setTasks}) {
 
-  
+  if (!isAuthenticated()) {
+    return <Navigate to='/home'/>
+  }
   const [todos,setTodos]=useState([])
   const [inprogress,setInprogress]=useState([])
   const [closed,setClosed]=useState([])

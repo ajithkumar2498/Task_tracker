@@ -2,9 +2,16 @@ import React from 'react'
 import "./sidebar.css"
 import logo from "../../images/mainlogo.png"
 import {Link} from "react-router-dom"
+import { isAuthenticated } from '../services/Auth'
+import { Navigate } from 'react-router-dom'
 
-function Sidebar() {
+function Sidebar(props) {
+ 
+    if (!isAuthenticated()) {
+        return <Navigate to='/home'/>
+      }
   return <>
+    <div className="content">
      <ul className="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
 
@@ -37,6 +44,13 @@ function Sidebar() {
     </Link>
 </li>
 <hr className="sidebar-divider"/>
+<li className="nav-item">
+    <a onClick={props.logoutUser} className="nav-link collapsed"   data-toggle="collapse" data-target="#collapseUtilities"
+        aria-expanded="true" aria-controls="collapseUtilities">
+         <i className="fa-solid fa-right-from-bracket" ></i>
+        <span>logout</span>
+    </a>
+</li>
 {/* <li className="nav-item">
     <a className="nav-link" href="charts.html">
         <i className="fas fa-fw fa-chart-area"></i>
@@ -48,6 +62,7 @@ function Sidebar() {
         <span>Tables</span></a>
 </li> */}
 </ul>
+</div>
   </>
 }
 

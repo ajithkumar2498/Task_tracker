@@ -29,10 +29,14 @@ function App() {
       <BrowserRouter>
       
         <div className="content-wrapper">
-           <div className="content">
          
+         
+             {/*<Navbar/> */}
               <div className="container-fluid">
+              
+             
                 <Routes>
+                  
                   <Route path="/home" element={  <LandingPage/>}></Route>
                   <Route path='/register-page' element={<RegisterPage/>}/>
                   <Route path='/login-page' element={<LoginPage/>}/>
@@ -45,10 +49,11 @@ function App() {
                   <Route path='*' element={<Navigate to='/dashboard'/>}/>
                 </Routes>
 
-
+                
+               
               </div>
            </div>
-        </div>
+        
       </BrowserRouter>
       </DndProvider>
     </>

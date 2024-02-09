@@ -2,6 +2,8 @@ import React,{useEffect, useState} from 'react'
 import { Outlet,useNavigate } from 'react-router-dom'
 import "./task.css"
 import ListTask from './ListTask'
+import { isAuthenticated } from '../services/Auth'
+import { Navigate } from 'react-router-dom'
 
 function AllTask({tasks, setTasks}) {
  
@@ -13,7 +15,9 @@ function AllTask({tasks, setTasks}) {
    nav('list-task')
   }, [])
   
-  
+  if (!isAuthenticated()) {
+    return <Navigate to='/home'/>
+  }
   return <>
     <div className="project-details">
       <div className="task-datedetails">

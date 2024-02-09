@@ -3,6 +3,8 @@ import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 import "./createTask.css"
 import { useNavigate } from 'react-router-dom';
+import { isAuthenticated } from '../services/Auth';
+import { Navigate } from 'react-router-dom';
 
 function task({tasks, setTasks}) {
   let nav = useNavigate()
@@ -38,7 +40,10 @@ function task({tasks, setTasks}) {
     const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
     return formattedDate;
   };
-
+ 
+  if (!isAuthenticated()) {
+    return <Navigate to='/home'/>
+  }
   return <> 
   <div className="form">
   <form onSubmit={handleSubmit} className='task-form '>
