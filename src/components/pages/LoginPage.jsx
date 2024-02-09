@@ -4,9 +4,11 @@ import './loginpage.css'
 import { LoginApi } from '../services/Api'
 import { StoreUserData } from '../services/Storage'
 import { isAuthenticated } from '../services/Auth'
+import { toast } from 'react-hot-toast'
 
 
 const LoginPage= ()=> {
+    //initial states
     const initialStateErrors ={
         email:{required:false},
         password:{required:false},
@@ -15,6 +17,8 @@ const LoginPage= ()=> {
      const [errors, setErrors] = useState(initialStateErrors)
      const [loading, setLoading] = useState(false)
   const nav = useNavigate();
+
+  //Login function
   const handleSubmit = (event)=>{
       event.preventDefault();
       console.log(inputs)
@@ -34,10 +38,12 @@ const LoginPage= ()=> {
            LoginApi(inputs).then((Result)=>{
             console.log(Result)
             StoreUserData(Result.data.idToken)
+            toast.success("logged-in successfully")
+            nav('/dashboard')
             console.log(Result)
            }).catch((err)=>{
             if (err.code="ERR_BAD_REQUEST") {
-                setErrors({...errors, custom_Error:"Inalid Login Credentials..."})
+                setErrors({...errors, custom_Error:"Invalid Login Credentials..."})
             }
            }).finally(()=>{
             setLoading(false)
@@ -104,7 +110,7 @@ const LoginPage= ()=> {
                                             </div>):null
                                             }
                                             </div>
-                                            <button href="index.html" disabled={loading} className="btn btn-primary btn-user btn-block">
+                                            <button  disabled={loading} className="btn btn-primary btn-user btn-block">
                                                 Login
                                             </button>
                                             <hr/>

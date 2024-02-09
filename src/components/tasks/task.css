@@ -133,6 +133,14 @@
     right:20px;
     bottom: 1rem;
     cursor:pointer;
+    color:rgb(241, 3, 3);
+}
+.delete-task-btn{
+    position: absolute;
+    right:20px;
+    bottom: 1rem;
+    margin-left: 3rem;
+    cursor:pointer;
     color:rgb(64, 62, 62);
 }
 .priority{

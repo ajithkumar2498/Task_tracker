@@ -125,6 +125,15 @@ const Task = ({task, tasks, setTasks})=>{
  
    toast("Task Removed",{icon:"💀"})
   }
+  const handleEdit =(id)=>{
+    const fTasks = tasks.filter((t)=> t.id !== id)
+    localStorage.setItem("tasks", JSON.stringify(fTasks))
+    setTasks(fTasks)
+  
+    toast("Task Removed",{icon:"💀"})
+   }
+ 
+
    
   return <>
   <div ref={drag} className={`task-box ${isDragging ? "low": "high"}`}>
@@ -132,6 +141,7 @@ const Task = ({task, tasks, setTasks})=>{
    <p>{task.description}</p>
    <p className='priority'>{task.priority}</p>
    <p >{task.deadline}</p>
+   <i className="fa-solid fa-pen edit-task-btn" onClick={()=>{handleEdit(task.id)}}></i>
    <i className="fa-solid fa-trash delete-task-btn" onClick={()=>{handleRemove(task.id)}}></i>
    </div>
   </>
